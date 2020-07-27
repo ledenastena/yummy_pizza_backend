@@ -11,8 +11,8 @@ class ProductController extends Controller {
         $products = Product::all();
 
         if ($request->query('product_type_id') !== null) {
-            $products = $products->where('product_type_id', $request->query('product_type_id'));
+            $products = $products->where('product_type_id', intVal($request->query('product_type_id')));
         }
-        return response()->json($products);
+        return $products->values()->toJson();
     }
 }
